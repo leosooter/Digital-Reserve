@@ -1,0 +1,966 @@
+//@import "reset";
+//@import "colors";
+//@import "fonts";
+//@import "menus";
+//@import "content";
+//@import "forms";
+//@import "footer";
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+}
+
+
+$accent-color1: #D3540C;
+$accent-color1-light: lighten($accent-color1, 20%);
+$accent-color1-dark: darken($accent-color1, 20%);
+
+$accent-color2: #509600;
+$accent-color2-light: lighten($accent-color2, 20%);
+$accent-color2-dark: darken($accent-color2, 20%);
+
+$accent-color3: #D3860C;
+$accent-color3-light: lighten($accent-color3, 20%);
+$accent-color3-dark: darken($accent-color3, 20%);
+
+
+//Body colors
+$color-background: white;
+$color-menu-bar: white;
+$color-bar-transparent: fade_out(white, .8);
+
+//Logo Colors
+$color-logo: $accent-color2;
+
+$color-logo-font1: white;
+$color-logo-font2: white;
+
+
+//Menu Colors
+$color-menu-font: lighten(black, 40%);
+
+
+$color-menu-font-hover: $accent-color1;
+$accent-color1-hover: lighten($accent-color1, 10%);
+
+//Icons
+$logo-image: url(images/icons/acacia-1.png);
+
+
+$facebook-icon: url(images/icons/facebook.png);
+$twitter-icon: url(images/icons/twitter.png);
+$linkedin-icon: url(images/icons/linkedin.png);
+$gplus-icon: url(images/icons/google-plus.png);
+
+$menu-open-icon: url(images/icons/menu-orange.png);
+$menu-close-icon: url(images/icons/letter-x-orange.png);
+
+$list-add-icon: url(images/icons/add.png);
+$list-minus-icon: url(images/icons/minus.png);
+$list-check-icon: url(images/icons/checked.png);
+
+@mixin logo-font1{
+  font-family: 'Sansita One', cursive;;
+  letter-spacing: pxrem(3);
+}
+
+@mixin logo-font2{
+  font-family: 'Aclonica', sans-serif;
+  letter-spacing: pxrem(3);
+}
+
+@mixin title-font{
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+
+@mixin menu-font{
+  font-family: 'Khula', sans-serif;
+}
+
+@mixin content-font{
+  font-family: 'Catamaran', sans-serif;
+}
+
+@mixin h1{
+  @include title-font;
+  font-size: pxrem(40);
+}
+
+@mixin h2{
+  @include title-font;
+  font-size: pxrem(30);
+}
+
+@mixin h3{
+  @include title-font;
+  font-size: pxrem(20);
+}
+
+@mixin h4{
+  @include title-font;
+  font-size: pxrem(18);
+}
+
+@mixin main-menu-font{
+  @include menu-font;
+  font-size: pxrem(24);
+}
+
+@mixin mobile-menu-font{
+  @include menu-font;
+  font-size: pxrem(24);
+}
+
+@mixin p{
+  @include content-font;
+  font-size: pxrem(16);
+}
+
+
+@function pxrem($px){
+    @return($px/16)+rem;
+};
+
+//variables
+$XS:  pxrem(200);
+$S: pxrem(320);
+$SM: pxrem(500);
+$M: pxrem(750);
+$L: pxrem(960);
+$XL: pxrem(1400);
+$XXL: pxrem(200);
+
+// Mixins
+@mixin MQ($canvas) {
+  @if $canvas == Splus {
+    @media only screen and (min-width: $S) { @content; }
+  }
+  @if $canvas == SMplus {
+    @media only screen and (min-width: $SM) { @content; }
+  }
+  @else if $canvas == Mplus {
+    @media only screen and (min-width: $M) { @content; }
+  }
+  @else if $canvas == Lplus {
+    @media only screen and (min-width: $L) { @content; }
+  }
+  @else if $canvas == XLplus {
+    @media only screen and (min-width: $XL) { @content; }
+  }
+}
+
+///////////////////////////////////////////////////
+
+body{
+    height: pxrem(600);
+    width: 100%;
+    margin-top: 0;
+}
+
+header{
+  width: 100%;
+  margin-top: pxrem(20);
+}
+
+#title-wrapper{
+  position: relative;
+  height: pxrem(80);
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: pxrem(15);
+  @include MQ(Mplus){
+    height: pxrem(100);
+  }
+  @include MQ(XLplus){
+    width: pxrem(1400);
+  }
+}
+
+
+#shade-line2{
+  position: relative;
+  height: pxrem(1);
+  width: 100%;
+  float: left;
+  @include MQ(SMplus){
+    width: 80%;
+  }
+  background: linear-gradient(to right, darken($color-logo, 5%), white);
+}
+
+#logo-wrapper{
+  position: relative;
+  height: pxrem(80);
+  width: 100%;
+  float: left;
+  @include MQ(Mplus){
+    height: pxrem(100);
+    width: 80%;
+  }
+}
+
+#logo-image{
+  position: absolute;
+  height: 100%;
+  width: pxrem(120);
+  background: $logo-image;
+  background-size: cover;
+  margin-left: pxrem(10);
+  margin-right: pxrem(20);
+  @include MQ(Mplus){
+    width: pxrem(150);
+  }
+}
+
+#logo-text{
+  position: absolute;
+  margin-top: pxrem(8);
+  margin-left: pxrem(110);
+  @include MQ(Mplus){
+    margin-left: pxrem(142);
+  }
+  h1{
+    color: $accent-color2;
+    font-size: pxrem(30);
+    @include logo-font1;
+    @include MQ(Mplus){
+    font-size: pxrem(40);
+    }
+  }
+  h2{
+    color: $accent-color2;
+    margin-left: pxrem(80);
+    font-size: pxrem(20);
+    @include logo-font2;
+    @include MQ(Mplus){
+    font-size: pxrem(30);
+    }
+  }
+}
+
+////////////////////////////////////Social Media
+#social-media-wrapper{
+  display: none;
+  position: absolute;
+  height: pxrem(40);
+  right: pxrem(20);
+  width: 30%;
+  @include MQ(Mplus){
+    display: block;
+  }
+}
+
+.icon{
+  float: right;
+  display: inline-block;
+  height: pxrem(40);
+  width: pxrem(40);
+  margin: 0 2%;
+  cursor: pointer;
+  background-size: 100% 100%;
+  box-shadow: pxrem(1) pxrem(1) pxrem(1) darken(white, 10%);
+}
+
+.icon:hover{
+  box-shadow: pxrem(3) pxrem(3) pxrem(3) darken(white, 20%);
+}
+
+#fbook{
+  background-image: $facebook-icon;
+}
+
+#linkedin{
+  background-image: $linkedin-icon;
+}
+
+#twitter{
+  background-image: $twitter-icon;
+}
+
+#gplus{
+  background-image: $gplus-icon;
+}
+
+
+///////////////////////////////////////////Menu
+#main-menu{
+  display: none;
+  height: pxrem(30);
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: pxrem(20);
+  text-align: center;
+  @include main-menu-font;
+  @include MQ(Mplus){
+    display: block;
+  }
+  @include MQ(XLplus){
+    width: pxrem(1400);
+  }
+  li{
+    display: inline;
+    margin: pxrem(0) pxrem(10);
+    
+    a{
+      color: $color-menu-font;
+      text-decoration: none;
+      padding: 0 pxrem(15);
+      border-bottom: solid pxrem(1) darken(white, 3%);
+    }
+    a:hover{
+      color: $color-menu-font-hover;
+      border-bottom: solid pxrem(1) lighten($accent-color1, 40%);
+    }
+  }
+  .current-page{
+    a{
+      color: $accent-color1;
+      border-bottom: solid pxrem(1) lighten($accent-color1, 50%);
+    }
+    a:hover{
+      color: $accent-color1-hover;
+      border-bottom: solid pxrem(1) lighten($accent-color1, 40%);
+    }
+  }
+}
+
+#mobile-menu-wrapper{
+  display: block;
+  width: 100%;
+  @include MQ(Mplus){
+    display: none;
+  }
+}
+
+#mobile-menu-trigger{
+  position: relative;
+  height: pxrem(40);
+  width: pxrem(40);
+  margin: 0 auto;
+  margin-bottom: pxrem(15);
+  background-size: contain;
+  cursor: pointer;
+}
+
+#trigger-icon{
+  height: pxrem(40);
+  width: pxrem(40);
+  margin: 0 auto;
+  margin-top: pxrem(10);
+  cursor: pointer;
+  background-color: white;
+}
+
+#mobile-menu{
+  position: relative;
+  width: 100%;
+  @include mobile-menu-font;
+  text-align: center;
+  margin-bottom: pxrem(20);
+  ul{
+    li{
+      display: block;
+      width: 70%;
+      margin: 0 auto;
+      padding: pxrem(10) 0;
+      border-bottom: solid pxrem(1) darken(white, 2%);
+      a{
+        color: $color-menu-font;
+        text-decoration: none;
+        border-radius: pxrem(5);
+      }
+      a:hover{
+        color: $color-menu-font-hover;
+      }
+    }
+    .current-page{
+      border-bottom: solid pxrem(1) lighten($accent-color1, 50%);
+      a{
+        color: $accent-color1;
+      }
+      a:hover{
+        color: $accent-color1-hover;
+      }
+    }
+    li:hover{
+      border-bottom: solid pxrem(1) lighten($accent-color1, 40%);
+    }
+  }
+}
+
+.open-icon{
+  background-image: $menu-open-icon;
+}
+
+.close-icon{
+  background-image: $menu-close-icon;
+}
+
+.menu-hidden{
+  display: none;
+}
+
+.menu-visible{
+  display: block;
+}
+
+//////////////////////////////////////Bar
+#bar{
+  position: relative;
+  width: 100%;
+  
+  @include MQ(XLplus){
+    width: pxrem(1400);
+  }
+  max-height: pxrem(600);
+  margin: 0 auto;
+  //margin-top: pxrem(130);
+  overflow: hidden;
+  img{
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+}
+
+#bar-transparent{
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  bottom: 0;
+  background: $color-bar-transparent;
+  text-align: center;
+  color: white;
+  @include MQ(Mplus){
+      height: 40%;
+    }
+  h1{
+    @include h1;
+    font-size: pxrem(24);
+    margin-top: pxrem(10);
+    @include MQ(Mplus){
+      font-size: pxrem(40);
+      margin-top: pxrem(40);
+    }
+  }
+  p{
+    @include p;
+    font-size: pxrem(14);
+    @include MQ(Mplus){
+      font-size: pxrem(18);
+    }
+  }
+}
+
+
+////////////////////////////////////////////////// Content
+main{
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  @include MQ(XLplus){
+    width: pxrem(1400);
+  }
+}
+
+#description{
+  height: pxrem(300);
+  width: 90%;
+  max-width: pxrem(800);
+  margin: 0 auto;
+  margin-top: pxrem(30);
+  padding: pxrem(10);
+  overflow: scroll;
+  border-bottom: solid pxrem(1) lighten($accent-color1, 20%);
+  @include MQ(Mplus){
+    height: pxrem(200);
+  }
+  h2{
+    text-align: center;
+    @include h2;
+    color: darken($color-logo, 15%);
+  }
+  p{
+    @include p;
+  }
+}
+
+#quick-info-wrapper{
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: pxrem(20);
+}
+
+.quick-info-box{
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    height: pxrem(280);
+    width: 80%;
+    margin: pxrem(10);
+    background-color: darken(white, 5%);
+    box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+    @include MQ(Mplus){
+    width: 60%;
+    margin: pxrem(30) 2%;
+    }
+    @include MQ(Lplus){
+    width: 22%;
+    margin: pxrem(30) 2%;
+    }
+    img{
+      display: block;
+      height: pxrem(120);
+      width: pxrem(120);
+      margin-left: auto;
+      margin-right: auto;
+      @include MQ(Mplus){
+        height: pxrem(160);
+        width: pxrem(160);
+      }
+    }
+    .quick-info-text{
+        position: absolute;
+        height: pxrem(258);
+        padding: pxrem(10) pxrem(10);
+        margin-bottom: pxrem(-200);
+        transition: margin-bottom .3s ease-out;
+        bottom: 0;
+        background: white;
+        border: solid pxrem(1) darken(white, 30%);
+        @include MQ(Mplus){
+          margin-bottom: pxrem(-180);
+        }
+        h4{
+          text-align: center;
+          color: darken($color-logo, 15%);
+            @include h4;
+        }
+        p{
+          @include p;
+          color: white;
+          line-height: 1.2;
+          transition: color .6s ease-in .1s;
+        }
+        
+    }
+    a{
+        position: absolute;
+        right: pxrem(5);
+        bottom: pxrem(5);
+        @include menu-font;
+        color: $accent-color1;
+        text-decoration: none;
+            
+    }
+    a:hover{
+        color: lighten($accent-color1, 10%);
+    }
+}
+
+.quick-info-box:hover, .quick-info-box:focus{
+    box-shadow: pxrem(1) pxrem(2) pxrem(5) darken(white, 50%);
+    .quick-info-text{
+        margin-bottom: pxrem(0);
+        @include MQ(Mplus){
+          margin-bottom: pxrem(0);
+        }
+        p{
+          color: lighten(black, 10%);
+        }
+    }
+}
+
+footer{
+  margin-top: pxrem(30);
+  margin-right: pxrem(30);
+  clear: both;
+  float: right;
+  p{
+    @include p;
+    font-size: pxrem(14);
+    color: lighten(black, 40%);
+  }
+}
+
+
+//////////////////////// Gallery Page
+#cam-menu{
+  width: 90%;
+  margin: 0 auto;
+  padding: pxrem(20);
+  text-align: center;
+  border-bottom: solid pxrem(1) $accent-color1;
+  @include MQ(Mplus){
+      width: 50%;
+    }
+  h4{
+    margin-bottom: pxrem(20);
+    @include h4;
+    color: $accent-color2-dark;
+  }
+  p{
+    @include p;
+    cursor: pointer;
+    display: block;
+    padding: 0 pxrem(20);
+    margin: pxrem(5);
+    background-color: $accent-color2;
+    border-bottom: solid pxrem(1) $accent-color2-dark;
+    box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+    @include MQ(Splus){
+      display: inline;
+    }
+    &:hover{
+      background-color: $accent-color2-light;
+      box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 40%);
+    }
+  }
+}
+
+#gallery-wrapper{
+  float: left;
+  width: 70%;
+  max-width: pxrem(950);
+  margin-top: pxrem(20);
+  margin-left: pxrem(20);
+  padding: pxrem(5);
+  background-color: darken(white, 5%);
+  box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+}
+
+.gallery{
+  display: block;
+  margin: 0 auto;
+  text-align: left;
+  @include MQ(Mplus){
+    text-align: center;
+  }
+}
+
+.image-box{
+  display: inline-block;
+  margin: pxrem(10) pxrem(5);
+  border: solid pxrem(1) lighten(black, 50%);
+  box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 30%);
+  img{
+    height: pxrem(225);
+    width: pxrem(300);
+  }
+}
+
+////////// Wildlife Lists
+#list-wrapper{
+  position: absolute;
+  right: 2%;
+  width: 40%;
+  max-width: pxrem(950);
+  margin-top: pxrem(20);
+  padding: pxrem(5);
+  background-color: darken(white, 5%);
+  border: solid pxrem(1) darken(white, 30%);
+  box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+  @include MQ(Mplus){
+    width: 23%;
+  }
+  button{
+    display: inline;
+  }
+  input{
+    display: inline;
+    @include p;
+    height: pxrem(16);
+    margin-right: pxrem(10);
+    outline: none;
+    color: $accent-color2-dark;
+    &:focus{
+      border: solid pxrem(1) $accent-color1;
+    }
+  }
+}
+#manage-list{
+  margin-bottom: pxrem(20);
+  h3{
+    @include h3;
+    padding: pxrem(5);
+    background: $accent-color1-light;
+    color: black;
+    box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+    text-align: center;
+  }
+  p{
+    @include p;
+    color: $accent-color2-dark;
+  }
+}
+
+#list{
+  h3{
+    @include h3;
+    padding: pxrem(5);
+    background: lighten($accent-color2-light, 30%);
+    box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+    text-align: center;
+  }
+  ul{
+    margin-top: pxrem(5);
+    cursor: pointer;
+    @include p;
+    &:hover{
+      border-bottom: solid pxrem(1) $accent-color1;
+    }
+    li{
+      margin-top: pxrem(3);
+      cursor: pointer;
+      border-bottom: solid pxrem(1) darken(white, 10%);
+      &:last-child{
+        margin-left: pxrem(21);
+        color: $accent-color1;
+        list-style-image: $list-add-icon;
+      }
+    }
+  }
+}
+
+.add-icon{
+  background-image: $list-add-icon;
+}
+
+.minus-icon{
+  background-image: $list-minus-icon;
+}
+
+.hide{
+  display: none;
+}
+
+.show{
+  display: block;
+}
+
+.checked{
+  color: lighten($accent-color2, 10%);
+  margin-left: pxrem(21);
+  list-style-image: $list-check-icon;
+  &:hover{
+    color: lighten($accent-color2, 15%);
+    border-bottom: solid pxrem(1) darken(white, 15%);
+  }
+}
+
+.un-checked{
+  color: $accent-color2-dark;
+  &:hover{
+    color: lighten($accent-color2-dark, 10%);
+    border-bottom: solid pxrem(1) darken(white, 15%);
+  }
+}
+
+////////////////////// Contact 
+.page-title{
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: pxrem(20);
+  //margin: pxrem(30);
+  padding-bottom: pxrem(20);
+  text-align: center;
+  @include h2;
+  color: $accent-color2-dark;
+  border-bottom: solid pxrem(1) $accent-color1;
+}
+
+#contact-info{
+  margin: 0 auto;
+  margin-bottom: pxrem(30);
+  p{
+    text-align: center;
+    @include p;
+    color: $accent-color1-dark;
+  }
+}
+
+form{
+  width: 90%;
+  height: pxrem(400);
+  margin-top: pxrem(20);
+  margin: 0 auto;
+  max-width: pxrem(950);
+  padding: pxrem(5);
+  background-color: darken(white, 5%);
+  border: solid pxrem(1) darken(white, 30%);
+  box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+  text-align: left;
+  display: block;
+  @include MQ(Mplus){
+    width: 50%;
+  }
+  h3{
+    text-align: center;
+    @include h3;
+    color: $accent-color2;
+  }
+  label{
+    padding: pxrem(5);
+  }
+  input{
+    width: pxrem(200);
+    @include p;
+    height: pxrem(16);
+    margin: pxrem(10) 0 pxrem(10) pxrem(35);
+    outline: none;
+    color: $accent-color2-dark;
+    &:focus{
+      border: solid pxrem(1) $accent-color1;
+    }
+  }
+  input[type=radio]{
+    width: pxrem(30);
+  }
+}
+
+textarea{
+  width: pxrem(200);
+  @include p;
+  height: pxrem(32);
+  margin-left: pxrem(19);
+  outline: none;
+  color: $accent-color2-dark;
+  &:focus{
+    border: solid pxrem(1) $accent-color1;
+  }
+  vertical-align: top;
+}
+
+input[type=submit]{
+  width: pxrem(100);
+  cursor: pointer;
+  &:hover{
+    box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 40%);
+  }
+  &:focus{
+    border: none;
+  }
+}
+
+
+////////////////// About Page
+
+#about-wrapper{
+  width: 90%;
+  margin-top: pxrem(20);
+  margin: 0 auto;
+  max-width: pxrem(950);
+  padding: pxrem(30);
+  line-height: 1.25;
+  background-color: darken(white, 15%);
+  border: solid pxrem(1) darken(white, 30%);
+  box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+  @include MQ(Mplus){
+    width: 80%;
+  }
+  h3{
+    margin-bottom: pxrem(20);
+    text-align: center;
+    @include h3;
+    color: $accent-color2;
+  }
+  p{
+    margin-bottom: pxrem(10);
+    @include p;
+    color: $accent-color2-dark;
+    strong{
+      @include h4;
+      color: $accent-color1;
+      font-weight: bold;
+    }
+    img{
+      height: pxrem(150);
+      width: pxrem(150);
+      float: left;
+      margin: 0 pxrem(20);
+      border: solid pxrem(2) $accent-color2-dark;
+      box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+    }
+  }
+}
+
+.about-box{
+  display: block;
+  width: 90%;
+  padding: pxrem(10);
+  margin: 0 auto;
+  margin-top: pxrem(20);
+  background-color: darken(white, 5%);
+  border: solid pxrem(1) darken(white, 40%);
+  box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+}
+#sponsor-box{
+  margin: 0 auto;
+  margin-top: pxrem(30);
+  text-align: center;
+  a{
+    height: pxrem(20);
+    width: pxrem(80);
+    padding: pxrem(5) pxrem(7);
+    text-decoration: none;
+    background-color: $accent-color1;
+    border-bottom: solid pxrem(1) $accent-color1-dark;
+    box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 20%);
+    @include h4;
+    color: white;
+    cursor: pointer;
+    &:hover{
+      background-color: $accent-color1-light;
+      border-bottom: solid pxrem(1) $accent-color1;
+      box-shadow: pxrem(1) pxrem(1) pxrem(2) darken(white, 40%);
+    }
+  }
+} 
+

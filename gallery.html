@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Digital Reserve</title>
+        <link type="text/css" rel="stylesheet" href="Sass.css">
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica|Catamaran:700|Changa+One|Khula:800|Mirza:700|Sansita+One" rel="stylesheet">
+    </head>
+    <body>
+        
+        <header>
+            <div id="title-wrapper">
+                <a href="/index.html">
+                    <div id="logo-wrapper">
+                        <div id="logo-text"><h1>DIGITAL</h1><h2>Reserve</h2></div>
+                        <div id="logo-image"></div>
+                    </div>
+                </a>
+                
+                
+                <div id="social-media-wrapper">
+                    <div id="gplus" class="icon"></div>
+                    <div id="linkedin" class="icon"></div>
+                    <div id="twitter" class="icon"></div>
+                    <div id="fbook" class="icon"></div>
+                </div> 
+                <div id="shade-line1"></div>
+            </div>
+            
+            <nav id="menu-wrapper" class="menu-particle-container">
+                <ul id="main-menu">
+                    <li class="menu-particle-hover"><a href="/index.html">Home</a></li>
+                    <li class="menu-particle-hover"><a href="/sponsor.html">Sponsor</a></li>
+                    <li class="current-page menu-particle-hover"><a href="/gallery.html">Gallery</a></li>
+                    <li class="menu-particle-hover"><a href="/about.html">About</a></li>
+                    <li class="menu-particle-hover"><a href="/contact.html">Contact</a></li>
+                </ul>
+            </nav>
+                
+            <div id="mobile-menu-wrapper">
+                <div id="mobile-menu-trigger" class="open-icon"></div>
+                
+                <nav id="mobile-menu" class="menu-hidden">
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/sponsor.html">Sponsor</a></li>
+                        <li  class="current-page"><a href="/gallery.html">Gallery</a></li>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </nav>  
+            </div>
+            
+        </header>
+    
+        <main>
+            <div id="cam-menu">
+                <h4>Select a camera to view the latest photos from the Reserve</h4>
+                <p id=cam1>Camera 1</p><p id=cam2>Camera 2</p><p id=cam3>Camera 3</p>
+            </div>
+            
+            <div id="gallery-wrapper">
+                
+            </div>
+            
+            <div id="list-wrapper">
+                <div id="manage-list" class="show"><h3>Wildlife List</h3><p>Create a new list to track wildife you see in the reserve.</p>
+                    <input id="list-name-input" type="text" name="list-name"/>
+                    <button id="new-list">Add New List</button>
+                </div>
+                
+                <div id="list" class="hide"><h3 id="list-name">My List</h3>
+                        <ul id="animals" class="show">
+                            <li id="animal-input" class="hide"><input type="text" name="new-animal" value=""/><button id="add-animal-button">Add</button></li>
+                            <li id="add-animal">Add a new Animal</li>
+                        </ul>
+                </div>
+            </div>   
+    
+        </main>
+    
+        <footer>
+            <p>&copy All text copyright 2016<br />
+                DigitalReserve, All Rights Reserved</p>
+        </footer>
+        <script src="javascript.js"></script>
+        <!--This is a vanilla Javascript Plugin I hand-coded- hosted on GitHub --> 
+        <script src="particle-plugin.js"></script>
+    </body>
+</html>
