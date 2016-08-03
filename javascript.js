@@ -50,10 +50,7 @@ function showList() {
 
 //Checks if user has visited page before- Creates a new list on first visit
 window.addEventListener('load', function() {
-    console.log(localStorage.visited);
     if(!localStorage.visited){
-        localStorage.visited = "true";
-        console.log("first visit");
         newList();
         createList();
     }
@@ -66,7 +63,6 @@ window.addEventListener('load', function() {
 //Populates new animal list with species from "animal" array
 //Creates a new user checklist to track which species have been checked off
 function newList() {
-    console.log("new-List");
     var checkList = [];
     localStorage.checkList = JSON.stringify(checkList);
     localStorage.animalList = JSON.stringify(animals);
@@ -75,7 +71,6 @@ function newList() {
 //Loops through array and creates new list item in DOM for each string
 function createList() {
     var animalList = JSON.parse(localStorage.animalList);
-    console.log(animalList[0]);
     var i;
     var anchor = document.getElementById("animals");
     for (i=0; i<animalList.length; i++){
@@ -161,7 +156,10 @@ var gallery1 =['/IMAG0015','/IMAG0035','/IMAG0038','/IMAG0049','/IMAG0054','/IMA
 var gallery2 =['/IMAG0074','/IMAG0081','/IMAG0088','/IMAG0104','/IMAG0109','/IMAG0134','/IMAG0141','/IMAG0146','/IMAG0152','/IMAG0159','/IMAG0279','/IMAG0334','/IMAG0580','/IMAG0677'];
 var gallery3 =['/IMAG0023','/IMAG0068','/IMAG0134','/IMAG0192','/IMAG0228','/IMAG0233','/IMAG0259','/IMAG0328','/IMAG0392','/IMAG0396','/IMAG0507','/IMAG0526','/IMAG0644','/IMAG0658'];
 
+//Loads image gallery (preloads galleries 2 and 3)
 window.addEventListener('load', function() {
+    displayGallery(gallery3, "gallery3");
+    displayGallery(gallery2, "gallery2");
     displayGallery(gallery1, "gallery1");
 });
 
@@ -174,10 +172,10 @@ document.getElementById("cam2").addEventListener('click', function() {
 });
 
 document.getElementById("cam3").addEventListener('click', function() {
-    console.log("gallery3");
     displayGallery(gallery3, "gallery3");
 });
 
+//Creates a new image gallery
 function displayGallery(gallery, name) {
     var anchor = document.getElementById("gallery-wrapper");
     if(anchor.firstChild.id !== name){
@@ -192,7 +190,6 @@ function displayGallery(gallery, name) {
             newDiv.className = "image-box";
             var newImg = document.createElement('img');
             newImg.src = imgPath + name + gallery[i] + '.JPG';
-            console.log(imgPath + name + gallery[i] + '.JPG');
             newDiv.appendChild(newImg);
             newGallery.appendChild(newDiv);
         } 
