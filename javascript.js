@@ -156,10 +156,11 @@ var gallery1 =['/IMAG0015','/IMAG0035','/IMAG0038','/IMAG0049','/IMAG0054','/IMA
 var gallery2 =['/IMAG0074','/IMAG0081','/IMAG0088','/IMAG0104','/IMAG0109','/IMAG0134','/IMAG0141','/IMAG0146','/IMAG0152','/IMAG0159','/IMAG0279','/IMAG0334','/IMAG0580','/IMAG0677'];
 var gallery3 =['/IMAG0023','/IMAG0068','/IMAG0134','/IMAG0192','/IMAG0228','/IMAG0233','/IMAG0259','/IMAG0328','/IMAG0392','/IMAG0396','/IMAG0507','/IMAG0526','/IMAG0644','/IMAG0658'];
 
-//Loads image gallery (preloads galleries 2 and 3)
+//Prelaods image galleries and displays first gallery
 window.addEventListener('load', function() {
-    displayGallery(gallery3, "gallery3");
-    displayGallery(gallery2, "gallery2");
+    preloadGallery(gallery3, "gallery3");
+    preloadGallery(gallery2, "gallery2");
+    preloadGallery(gallery1, "gallery1");
     displayGallery(gallery1, "gallery1");
 });
 
@@ -195,3 +196,24 @@ function displayGallery(gallery, name) {
         } 
     }
 }
+
+/*global Image */
+function preloadGallery(gallery, name){
+    var galleryImgArray = [];
+    var i;
+    for(i=0; i<gallery.length; i++){
+        galleryImgArray[i] = new Image();
+        galleryImgArray[i].src = imgPath + name + gallery[i] + '.JPG';
+        console.log(galleryImgArray[i].src);
+    }
+}
+
+
+
+
+
+
+
+
+
+
